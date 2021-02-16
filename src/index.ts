@@ -22,7 +22,7 @@ openRequest.onsuccess = () => {
   console.log("initial");
   db.onversionchange = () => {
     db.close();
-    alert("База данных устарела, пожалуста, перезагрузите страницу.");
+    alert("There is a newer verison of database. Pls refresh the page");
   };
 
   const authorInput = document.querySelector(
