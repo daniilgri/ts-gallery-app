@@ -1,3 +1,5 @@
+import "./styles/main.scss";
+
 interface IPost {
   author: string;
   link: string;
