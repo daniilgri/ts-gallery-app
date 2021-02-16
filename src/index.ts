@@ -45,6 +45,7 @@ openRequest.onsuccess = () => {
     loadPreviewButton.addEventListener("click", async event => {
       event.preventDefault();
       if (linkInput && linkInput.value !== "") {
+        imgPreview.style.display = "inline-block";
         imgPreview.src = linkInput.value;
       }
     });
