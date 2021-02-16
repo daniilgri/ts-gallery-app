@@ -1,5 +1,48 @@
-$body-color: red;
+@import "./form.scss";
+@import "./gallery.scss";
 
 body {
-  color: $body-color;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfcfa;
+}
+
+.header {
+  background-color: #ffe0b2;
+
+  padding: 20px 0;
+
+  &__content {
+    max-width: 85%;
+    margin: 0 auto;
+    a {
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+      transition: opacity 0.8s;
+
+      margin: 0 10px;
+      color: black;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      font-size: 14pt;
+      font-family: Arial, Helvetica, sans-serif;
+
+      svg {
+        height: 40px;
+        stroke: black;
+        padding: 5px;
+        background-color: white;
+        margin-right: 18px;
+      }
+    }
+
+    &:hover {
+      opacity: 0.8;
+      transition: opacity 0.8s;
+    }
+  }
 }

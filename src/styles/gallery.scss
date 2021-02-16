@@ -1,0 +1,27 @@
+.wrapper {
+  margin-bottom: 40px;
+  max-width: 85%;
+  margin: 0 auto;
+  margin-top: 40px;
+
+  display: flex;
+  justify-content: center;
+  .gallery {
+    .post {
+      background-color: white;
+
+      font-size: 11pt;
+      font-family: Arial, Helvetica, sans-serif;
+
+      margin-bottom: 40px;
+      padding: 20px;
+
+      box-shadow: 0px 0px 32px 1px rgba(0, 0, 0, 0.04);
+      -webkit-box-shadow: 0px 0px 32px 1px rgba(0, 0, 0, 0.04);
+      -moz-box-shadow: 0px 0px 32px 1px rgba(0, 0, 0, 0.04);
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
