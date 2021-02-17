@@ -21,8 +21,10 @@ body {
   &__content {
     max-width: 85%;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
 
-    a {
+    &__link {
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -45,11 +47,11 @@ body {
       .arrow-icon {
         background-color: $linkBtnBackgroundColorNone;
       }
-    }
 
-    &:hover {
-      opacity: 0.8;
-      transition: opacity 0.8s;
+      &:hover {
+        opacity: 0.8;
+        transition: opacity 0.8s;
+      }
     }
   }
 }
