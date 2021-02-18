@@ -1,7 +1,7 @@
 import { Gallery } from "./index";
 import { objectStores } from "../../db/constants";
 import { IPost } from "../../interfaces/posts";
-import { db } from "../../db/index";
+import { db } from "../../ts/app";
 
 export const GalleryContainer = {
   ...Gallery,

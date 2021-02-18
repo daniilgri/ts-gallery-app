@@ -4,7 +4,6 @@ import Route from "../router/route";
 import { routeNames } from "../router/constants";
 import { FormContainer } from "../views/Form/container";
 import { GalleryContainer } from "../views/Gallery/container";
-import { withDatabase } from "../db/wrappers";
 import { objectStores, dbConnection } from "../db/constants";
 import { Database } from "../db/index";
 

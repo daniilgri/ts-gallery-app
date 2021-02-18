@@ -92,9 +92,3 @@ export class Database {
     });
   }
 }
-
-export const db = new Database(
-  dbConnection.DB_NAME,
-  dbConnection.DB_VERSION,
-  dbConnection.DB_KEY
-).connect([objectStores.POSTS]);
