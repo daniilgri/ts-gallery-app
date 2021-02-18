@@ -2,8 +2,8 @@ import "../styles/main.scss";
 import Router from "./router";
 import Route from "./route";
 
-import Form from "../views/form";
-import Gallery from "../views/gallery";
+import Form from "../views/Form/index";
+import Gallery from "../views/Gallery/index";
 
 import { routes } from "../constants";
 
