@@ -1,7 +1,7 @@
 import { dbConnection, objectStores, errors } from "../constants";
 import { IPost } from "../interfaces/posts";
 
-export default class Database {
+class Database {
   name: string;
   version: number;
   connection: IDBDatabase;
@@ -13,7 +13,7 @@ export default class Database {
     this.key = key;
   }
 
-  connect(objectStores: string[]) {
+  connect(objectStores: string[]): Promise<Database> {
     return new Promise((resolve, reject) => {
       const req = indexedDB.open(this.name, this.version);
       req.onsuccess = () => {
@@ -24,7 +24,7 @@ export default class Database {
           console.log(errors.OLD_DB_PAGE_REFRESH);
         };
 
-        resolve(this.connection);
+        resolve(this);
       };
 
       req.onupgradeneeded = () => {
@@ -39,7 +39,7 @@ export default class Database {
           }
         }
 
-        resolve(this.connection);
+        resolve(this);
       };
 
       req.onerror = () => {
@@ -48,7 +48,7 @@ export default class Database {
     });
   }
 
-  push(objectStore: string, values: IPost) {
+  push(objectStore: string, values: IPost): Promise<void> {
     return new Promise((resolve, reject) => {
       const trx = this.connection
         .transaction([objectStore], "readwrite")
@@ -56,7 +56,7 @@ export default class Database {
 
       const req = trx.add(values);
       req.onsuccess = () => {
-        resolve(`[appendDB] -> ${objectStore}, Task finished`);
+        resolve();
       };
       req.onerror = () => {
         reject(req.error);
@@ -64,7 +64,7 @@ export default class Database {
     });
   }
 
-  getAll(objectStore: string) {
+  getAll<T>(objectStore: string): Promise<T[]> {
     return new Promise((resolve, reject) => {
       const trans = this.connection
         .transaction(objectStore, dbConnection.READ_ONLY)
@@ -81,3 +81,9 @@ export default class Database {
     });
   }
 }
+
+export const db: Promise<Database> = new Database(
+  dbConnection.DB_NAME,
+  dbConnection.DB_VERSION,
+  dbConnection.DB_KEY
+).connect([objectStores.POSTS]);

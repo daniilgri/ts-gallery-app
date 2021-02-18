@@ -2,12 +2,14 @@ import "../styles/main.scss";
 import Router from "./router";
 import Route from "./route";
 
-(function () {
-  function init() {
-    const router = new Router([
-      new Route("gallery", "gallery.html", true),
-      new Route("form", "form.html")
-    ]);
-  }
-  init();
-})();
+import Form from "../views/form";
+import Gallery from "../views/gallery";
+
+import { routes } from "../constants";
+
+window.addEventListener("load", () => {
+  new Router(
+    [new Route(routes.gallery, Gallery, true), new Route(routes.form, Form)],
+    document.getElementById("app") as HTMLElement
+  );
+});

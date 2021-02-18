@@ -1,15 +1,21 @@
+import { IBaseComponent } from "../interfaces/components";
+
 export default class Route {
   name: string;
-  htmlName: string;
+  component: IBaseComponent;
   default: boolean;
 
-  constructor(name: string, htmlName: string, defaultRoute: boolean = false) {
+  constructor(
+    name: string,
+    component: IBaseComponent,
+    defaultRoute: boolean = false
+  ) {
     this.name = name;
-    this.htmlName = htmlName;
+    this.component = component;
     this.default = defaultRoute;
   }
 
   isActiveRoute(hashedPath: string) {
-    return hashedPath.replace("#", "") === this.name;
+    return hashedPath === this.name;
   }
 }

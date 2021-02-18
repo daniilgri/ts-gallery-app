@@ -4,50 +4,35 @@ export default class Router {
   routes: Route[];
   rootElem: HTMLElement;
 
-  constructor(routes: Route[]) {
+  constructor(routes: Route[], rootElem: HTMLElement) {
     this.routes = routes;
-    this.rootElem = document.getElementById("app");
-    this.init();
+    this.rootElem = rootElem;
+
+    window.addEventListener("hashchange", () => {
+      this.hashChange();
+    });
+
+    this.hashChange();
   }
 
-  init() {
-    const r = this.routes;
-    (function (scope, r) {
-      window.addEventListener("hashchange", function () {
-        scope.hashChange(scope, r);
-      });
-    })(this, r);
-
-    this.hashChange(this, r);
-  }
-
-  hashChange(scope: Router, r: Route[]) {
+  hashChange() {
     if (window.location.hash.length > 0) {
-      for (let route of r) {
+      for (let route of this.routes) {
         if (route.isActiveRoute(window.location.hash.substr(1))) {
-          scope.goToRoute(route.htmlName);
+          this.goToRoute(route);
         }
       }
     } else {
-      for (let route of r) {
+      for (let route of this.routes) {
         if (route.default) {
-          scope.goToRoute(route.htmlName);
+          this.goToRoute(route);
         }
       }
     }
   }
 
-  goToRoute(htmlName: string) {
-    (function (scope: Router) {
-      const url = htmlName;
-      const xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          scope.rootElem.innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("GET", url, true);
-      xhttp.send();
-    })(this);
+  async goToRoute(route: Route) {
+    this.rootElem.innerHTML = await route.component.render();
+    await route.component.afterRender();
   }
 }

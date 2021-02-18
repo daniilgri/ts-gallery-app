@@ -14,3 +14,8 @@ export const errors = {
   OLD_DB_PAGE_REFRESH:
     "There is a newer verison of database. Pls refresh the page"
 };
+
+export const routes = {
+  gallery: "gallery",
+  form: "form"
+};

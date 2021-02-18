@@ -36,7 +36,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "./src/index.html")
-    }),
+    })
+  ]
+};
+
+/**,
     new HtmlWebpackPlugin({
       filename: "form.html",
       template: path.resolve(__dirname, "./src/views/form.html")
@@ -44,6 +48,4 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "gallery.html",
       template: path.resolve(__dirname, "./src/views/gallery.html")
-    })
-  ]
-};
+    }) */
