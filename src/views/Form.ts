@@ -58,6 +58,9 @@ export default {
         link: linkInput.value,
         description: descriptionInput.value
       });
+      authorInput.value = "";
+      linkInput.value = "";
+      descriptionInput.value = "";
     });
   }
 };

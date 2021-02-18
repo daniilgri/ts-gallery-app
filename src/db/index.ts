@@ -49,7 +49,7 @@ class Database {
   }
 
   push(objectStore: string, values: IPost): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const trx = this.connection
         .transaction([objectStore], "readwrite")
         .objectStore(objectStore);
@@ -65,7 +65,7 @@ class Database {
   }
 
   getAll<T>(objectStore: string): Promise<T[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise<T[]>((resolve, reject) => {
       const trans = this.connection
         .transaction(objectStore, dbConnection.READ_ONLY)
         .objectStore(objectStore);
