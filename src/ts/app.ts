@@ -1,15 +1,25 @@
 import "../styles/main.scss";
-import Router from "./router";
-import Route from "./route";
+import Router from "../router/router";
+import Route from "../router/route";
+import { routeNames } from "../router/constants";
+import { FormContainer } from "../views/Form/container";
+import { GalleryContainer } from "../views/Gallery/container";
+import { withDatabase } from "../db/wrappers";
+import { objectStores, dbConnection } from "../db/constants";
+import { Database } from "../db/index";
 
-import Form from "../views/Form/index";
-import Gallery from "../views/Gallery/index";
-
-import { routes } from "../constants";
+export const db = new Database(
+  dbConnection.DB_NAME,
+  dbConnection.DB_VERSION,
+  dbConnection.DB_KEY
+).connect([objectStores.POSTS]);
 
 window.addEventListener("load", () => {
   new Router(
-    [new Route(routes.gallery, Gallery, true), new Route(routes.form, Form)],
+    [
+      new Route(routeNames.gallery, GalleryContainer, true),
+      new Route(routeNames.form, FormContainer)
+    ],
     document.getElementById("app") as HTMLElement
   );
 });

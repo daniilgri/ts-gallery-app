@@ -1,4 +1,11 @@
+import { Database } from "../db/index";
+
 export interface IBaseComponent {
-  render: () => Promise<string>;
-  afterRender: () => Promise<void>;
+  render: () => string;
+  afterRender: () => Promise<void> | void;
+}
+
+export interface IBaseContainer extends IBaseComponent {
+  db?: Promise<Database>;
+  props?: unknown;
 }

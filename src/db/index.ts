@@ -1,11 +1,16 @@
-import { dbConnection, objectStores, errors } from "../constants";
+import {
+  dbConnection,
+  objectStores,
+  errors,
+  transactionModes
+} from "./constants";
 import { IPost } from "../interfaces/posts";
 
-class Database {
-  name: string;
-  version: number;
-  connection: IDBDatabase;
-  key: string;
+export class Database {
+  private name: string;
+  private version: number;
+  private connection: IDBDatabase;
+  private key: string;
 
   constructor(name: string, version: number, key: string) {
     this.name = name;
@@ -21,7 +26,7 @@ class Database {
 
         this.connection.onversionchange = () => {
           this.connection.close();
-          console.log(errors.OLD_DB_PAGE_REFRESH);
+          reject(errors.OLD_DB_PAGE_REFRESH);
         };
 
         resolve(this);
@@ -48,10 +53,13 @@ class Database {
     });
   }
 
-  push(objectStore: string, values: IPost): Promise<void> {
+  push(objectStore: string, values: IPost) {
     return new Promise<void>((resolve, reject) => {
       const trx = this.connection
-        .transaction([objectStore], "readwrite")
+        .transaction(
+          [objectStore],
+          transactionModes.READ_WRITE as IDBTransactionMode
+        )
         .objectStore(objectStore);
 
       const req = trx.add(values);
@@ -64,10 +72,13 @@ class Database {
     });
   }
 
-  getAll<T>(objectStore: string): Promise<T[]> {
+  getAll<T>(objectStore: string) {
     return new Promise<T[]>((resolve, reject) => {
       const trans = this.connection
-        .transaction(objectStore, dbConnection.READ_ONLY)
+        .transaction(
+          objectStore,
+          transactionModes.READ_ONLY as IDBTransactionMode
+        )
         .objectStore(objectStore);
       const req = trans.getAll();
 
@@ -82,7 +93,7 @@ class Database {
   }
 }
 
-export const db: Promise<Database> = new Database(
+export const db = new Database(
   dbConnection.DB_NAME,
   dbConnection.DB_VERSION,
   dbConnection.DB_KEY

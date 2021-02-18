@@ -1,13 +1,13 @@
-import { IBaseComponent } from "../interfaces/components";
+import { IBaseComponent, IBaseContainer } from "../interfaces/components";
 
 export default class Route {
   name: string;
-  component: IBaseComponent;
+  component: IBaseContainer;
   default: boolean;
 
   constructor(
     name: string,
-    component: IBaseComponent,
+    component: IBaseContainer,
     defaultRoute: boolean = false
   ) {
     this.name = name;

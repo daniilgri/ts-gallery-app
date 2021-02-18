@@ -17,22 +17,22 @@ export default class Router {
 
   hashChange() {
     if (window.location.hash.length > 0) {
-      for (let route of this.routes) {
+      this.routes.forEach(route => {
         if (route.isActiveRoute(window.location.hash.substr(1))) {
           this.goToRoute(route);
         }
-      }
+      });
     } else {
-      for (let route of this.routes) {
+      this.routes.forEach(route => {
         if (route.default) {
           this.goToRoute(route);
         }
-      }
+      });
     }
   }
 
   async goToRoute(route: Route) {
-    this.rootElem.innerHTML = await route.component.render();
+    this.rootElem.innerHTML = route.component.render();
     await route.component.afterRender();
   }
 }

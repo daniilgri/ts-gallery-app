@@ -20,9 +20,7 @@ $postWrapperBoxShadowColor: rgba(0, 0, 0, 0.04);
       font-family: Arial, Helvetica, sans-serif;
       margin-bottom: 40px;
       padding: 20px;
-      box-shadow: 0px 0px 32px 1px $postWrapperBoxShadowColor;
-      -webkit-box-shadow: 0px 0px 32px 1px $postWrapperBoxShadowColor;
-      -moz-box-shadow: 0px 0px 32px 1px $postWrapperBoxShadowColor;
+      @include box-shadow(0px 0px 32px 1px $postWrapperBoxShadowColor);
 
       &__img {
         width: 100%;
