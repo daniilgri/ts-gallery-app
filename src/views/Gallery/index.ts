@@ -4,8 +4,8 @@ import { IBaseComponent } from "../../interfaces/components";
 export const Gallery: IBaseComponent = {
   render: () => {
     return `
-      <div class="wrapper">
-        <div class="gallery" id="gallery"></div>
+      <div class="gallery">
+        <div class="gallery__inner" id="gallery"></div>
       </div>
     `;
   },
@@ -19,11 +19,11 @@ export const Gallery: IBaseComponent = {
       const postDescription = document.createElement("p");
 
       post.classList.add("post");
-      postAuthor.classList.add("post__author");
+      postAuthor.classList.add("post__label");
       postAuthor.innerText = el.author;
       postImage.classList.add("post__img");
       postImage.src = el.link;
-      postDescription.classList.add("post__description");
+      postDescription.classList.add("post__label");
       postDescription.innerText = el.description;
 
       post.appendChild(postAuthor);

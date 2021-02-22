@@ -2,26 +2,25 @@ import { IBaseComponent } from "../../interfaces/components";
 
 export const Form: IBaseComponent = {
   render: (): string => {
-    return `<div class="wrapper">
-    <form id="newPostForm" class="form-content">
-      <input type="text" placeholder="Author" name="author" class="form-input" />
+    return `
+    <form id="newPostForm" class="form">
+      <input type="text" placeholder="Author" name="author" class="input" />
       <input
         type="text"
         placeholder="Image link"
         name="imageLink"
-        class="form-input"
+        class="input"
       />
-      <img alt="image preview" name="imgPreview" />
-      <button type="button" name="loadPreview" class="btn--outlined">Load</button>
+      <img alt="image preview" name="imgPreview" class="preview-img"/>
+      <button type="button" name="loadPreview" class="button button_outlined">Load</button>
       <textarea
         type="text"
         placeholder="Description"
         name="description"
-        class="form-input"
+        class="input"
       ></textarea>
-      <button type="submit" class="btn--filled">Publish</button>
+      <button type="submit" class="button button_filled">Publish</button>
     </form>
-  </div>
   `;
   },
   afterRender(): void {

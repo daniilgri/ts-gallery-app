@@ -1,5 +1,6 @@
 import { ERRORS, TRANSACTION_MODE } from "./constants";
 import { IPost } from "../interfaces/posts";
+import { OBJECT_STORES, DB_CONNECTION } from "../db/constants";
 
 export class Database {
   private name: string;
@@ -15,6 +16,9 @@ export class Database {
 
   connect(objectStores: string[]): Promise<Database> {
     return new Promise((resolve, reject) => {
+      if (this.connection) {
+        resolve(this);
+      }
       const req = indexedDB.open(this.name, this.version);
       req.onsuccess = () => {
         this.connection = req.result;
@@ -87,3 +91,9 @@ export class Database {
     });
   }
 }
+
+export const db = new Database(
+  DB_CONNECTION.NAME,
+  DB_CONNECTION.VERSION,
+  DB_CONNECTION.KEY
+).connect([OBJECT_STORES.POSTS]);
