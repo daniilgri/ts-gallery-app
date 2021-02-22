@@ -18,6 +18,7 @@ export class Database {
     return new Promise((resolve, reject) => {
       if (this.connection) {
         resolve(this);
+        return;
       }
       const req = indexedDB.open(this.name, this.version);
       req.onsuccess = () => {
