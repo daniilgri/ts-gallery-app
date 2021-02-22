@@ -1,4 +1,4 @@
-export const enum routeNames {
-  gallery = "gallery",
-  form = "form"
+export const enum ROUTE_NAMES {
+  GALLERY = "gallery",
+  FORM = "form"
 }

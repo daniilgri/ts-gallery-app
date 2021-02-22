@@ -1,9 +1,4 @@
-import {
-  dbConnection,
-  objectStores,
-  errors,
-  transactionModes
-} from "./constants";
+import { ERRORS, TRANSACTION_MODE } from "./constants";
 import { IPost } from "../interfaces/posts";
 
 export class Database {
@@ -26,7 +21,7 @@ export class Database {
 
         this.connection.onversionchange = () => {
           this.connection.close();
-          reject(errors.OLD_DB_PAGE_REFRESH);
+          reject(ERRORS.OLD_DB_PAGE_REFRESH);
         };
 
         resolve(this);
@@ -58,7 +53,7 @@ export class Database {
       const trx = this.connection
         .transaction(
           [objectStore],
-          transactionModes.READ_WRITE as IDBTransactionMode
+          TRANSACTION_MODE.READ_WRITE as IDBTransactionMode
         )
         .objectStore(objectStore);
 
@@ -77,7 +72,7 @@ export class Database {
       const trans = this.connection
         .transaction(
           objectStore,
-          transactionModes.READ_ONLY as IDBTransactionMode
+          TRANSACTION_MODE.READ_ONLY as IDBTransactionMode
         )
         .objectStore(objectStore);
       const req = trans.getAll();

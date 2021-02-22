@@ -1,18 +1,18 @@
-export enum dbConnection {
-  DB_NAME = "gallery",
-  DB_VERSION = 2,
-  DB_KEY = "id"
+export enum DB_CONNECTION {
+  NAME = "gallery",
+  VERSION = 2,
+  KEY = "id"
 }
 
-export enum objectStores {
+export enum OBJECT_STORES {
   POSTS = "posts"
 }
 
-export enum errors {
+export enum ERRORS {
   OLD_DB_PAGE_REFRESH = "There is a newer verison of database. Pls refresh the page"
 }
 
-export enum transactionModes {
+export enum TRANSACTION_MODE {
   READ_ONLY = "readonly",
   READ_WRITE = "readwrite"
 }
